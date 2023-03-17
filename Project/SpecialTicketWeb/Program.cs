@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SpecialTicketWeb.Models;
 using System.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -10,6 +11,9 @@ builder.Services.AddDbContext<SpecialticketContext>(options =>
 {
     options.UseMySQL(connection);
 });
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<SpecialticketContext>();
    
 
 var app = builder.Build();
@@ -26,11 +30,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 app.Run();

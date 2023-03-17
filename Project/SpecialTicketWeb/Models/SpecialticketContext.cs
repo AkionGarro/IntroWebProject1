@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace SpecialTicketWeb.Models;
 
-public partial class SpecialticketContext : DbContext
+public partial class SpecialticketContext : IdentityDbContext<IdentityUser>
 {
     public SpecialticketContext()
     {
@@ -37,6 +39,7 @@ public partial class SpecialticketContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Asiento>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
