@@ -29,7 +29,7 @@ CREATE TABLE compra (
   Updated_At datetime NOT NULL,
   UpdatedBy int(11) NOT NULL,
   Active int(11) NOT NULL,
-  id_cliente int(11) NOT NULL,
+  id_cliente varchar(255) NOT NULL,
   id_entrada int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -104,7 +104,6 @@ ALTER TABLE asiento
 
 ALTER TABLE compra
   ADD PRIMARY KEY (id),
-  ADD KEY id_cliente (id_cliente),
   ADD KEY id_entrada (id_entrada);
 
 
@@ -181,4 +180,3 @@ ALTER TABLE evento
 ALTER TABLE tipo_escenario
   ADD CONSTRAINT tipo_escenario_ibfk_1 FOREIGN KEY (id_escenario) REFERENCES escenario (id);
 COMMIT;
-
