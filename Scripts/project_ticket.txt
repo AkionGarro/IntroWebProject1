@@ -1,0 +1,184 @@
+
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+
+CREATE TABLE asiento (
+  id int(11) NOT NULL,
+  descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  cantidad int(11) NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active tinyint(1) NOT NULL,
+  id_escenario int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='tipos de asiento del escenario';
+
+
+CREATE TABLE compra (
+  id int(11) NOT NULL,
+  cantidad int(11) NOT NULL,
+  fecha_reserva datetime NOT NULL,
+  fecha_pago datetime NOT NULL,
+  Created_At datetime NOT NULL,
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  UpdatedBy int(11) NOT NULL,
+  Active int(11) NOT NULL,
+  id_cliente int(11) NOT NULL,
+  id_entrada int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+CREATE TABLE entradas (
+  id int(11) NOT NULL,
+  tipo_asiento varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  disponibles int(11) NOT NULL,
+  precio decimal(10,0) NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active tinyint(1) NOT NULL,
+  id_evento int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+CREATE TABLE escenario (
+  id int(11) NOT NULL,
+  nombre varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  localizacion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE evento (
+  id int(11) NOT NULL,
+  descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  fecha datetime NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active tinyint(1) NOT NULL,
+  id_tipo_evento int(11) NOT NULL,
+  id_escenario int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE tipo_escenario (
+  id int(11) NOT NULL,
+  descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active tinyint(1) NOT NULL,
+  id_escenario int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE tipo_evento (
+  id int(11) NOT NULL,
+  descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  Created_At datetime NOT NULL DEFAULT current_timestamp(),
+  Created_By int(11) NOT NULL,
+  Updated_At datetime NOT NULL,
+  Updated_By int(11) NOT NULL,
+  Active int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE asiento
+  ADD PRIMARY KEY (id),
+  ADD KEY id_escenario (id_escenario);
+
+
+ALTER TABLE compra
+  ADD PRIMARY KEY (id),
+  ADD KEY id_cliente (id_cliente),
+  ADD KEY id_entrada (id_entrada);
+
+
+ALTER TABLE entradas
+  ADD PRIMARY KEY (id),
+  ADD KEY id_evento (id_evento);
+
+
+ALTER TABLE escenario
+  ADD PRIMARY KEY (id);
+
+
+ALTER TABLE evento
+  ADD PRIMARY KEY (id),
+  ADD KEY id_escenario (id_escenario),
+  ADD KEY id_tipo_evento (id_tipo_evento);
+
+
+ALTER TABLE tipo_escenario
+  ADD PRIMARY KEY (id),
+  ADD KEY id_escenario (id_escenario);
+
+
+ALTER TABLE tipo_evento
+  ADD PRIMARY KEY (id);
+
+
+
+
+ALTER TABLE asiento
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE compra
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE entradas
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE escenario
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE evento
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE tipo_escenario
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE tipo_evento
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE asiento
+  ADD CONSTRAINT asiento_ibfk_1 FOREIGN KEY (id_escenario) REFERENCES escenario (id);
+
+
+ALTER TABLE compra
+  ADD CONSTRAINT compra_ibfk_2 FOREIGN KEY (id_entrada) REFERENCES entradas (id);
+
+
+ALTER TABLE entradas
+  ADD CONSTRAINT entradas_ibfk_1 FOREIGN KEY (id_evento) REFERENCES evento (id);
+
+
+ALTER TABLE evento
+  ADD CONSTRAINT evento_ibfk_1 FOREIGN KEY (id_escenario) REFERENCES escenario (id),
+  ADD CONSTRAINT evento_ibfk_2 FOREIGN KEY (id_tipo_evento) REFERENCES tipo_evento (id);
+
+
+ALTER TABLE tipo_escenario
+  ADD CONSTRAINT tipo_escenario_ibfk_1 FOREIGN KEY (id_escenario) REFERENCES escenario (id);
+COMMIT;
+
