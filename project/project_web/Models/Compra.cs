@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project_web.Models;
 
@@ -23,9 +24,11 @@ public partial class Compra
 
     public int Active { get; set; }
 
-    public string IdCliente { get; set; } = null!;
-
     public int IdEntrada { get; set; }
 
+    [ForeignKey("User")]
+    public string UserId { get; set; } = null!;
+
+    public virtual project_ticketUser User { get; set; } = null!;
     public virtual Entrada IdEntradaNavigation { get; set; } = null!;
 }

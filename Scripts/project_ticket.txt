@@ -29,9 +29,8 @@ CREATE TABLE compra (
   Updated_At datetime NOT NULL,
   UpdatedBy int(11) NOT NULL,
   Active int(11) NOT NULL,
-  id_cliente varchar(255) NOT NULL,
   id_entrada int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 

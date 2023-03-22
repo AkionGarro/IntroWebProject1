@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using project_web.Models;
 
@@ -10,9 +11,11 @@ using project_web.Models;
 namespace project_web.Migrations
 {
     [DbContext(typeof(ProjectTicketContext))]
-    partial class ProjectTicketContextModelSnapshot : ModelSnapshot
+    [Migration("20230321155055_identity")]
+    partial class identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,14 +248,8 @@ namespace project_web.Migrations
                     b.Property<int>("UpdatedBy")
                         .HasColumnType("int(11)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("Id")
                         .HasName("PRIMARY");
-
-                    b.HasIndex("UserId");
 
                     b.HasIndex(new[] { "IdEntrada" }, "id_entrada");
 
@@ -512,6 +509,9 @@ namespace project_web.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("ComprasId")
+                        .HasColumnType("int(11)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
@@ -557,6 +557,8 @@ namespace project_web.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ComprasId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -640,15 +642,7 @@ namespace project_web.Migrations
                         .IsRequired()
                         .HasConstraintName("compra_ibfk_2");
 
-                    b.HasOne("project_web.Models.project_ticketUser", "User")
-                        .WithMany("Compras")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("IdEntradaNavigation");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("project_web.Models.Entrada", b =>
@@ -696,6 +690,17 @@ namespace project_web.Migrations
                     b.Navigation("IdEscenarioNavigation");
                 });
 
+            modelBuilder.Entity("project_web.Models.project_ticketUser", b =>
+                {
+                    b.HasOne("project_web.Models.Compra", "Compras")
+                        .WithMany()
+                        .HasForeignKey("ComprasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Compras");
+                });
+
             modelBuilder.Entity("project_web.Models.Entrada", b =>
                 {
                     b.Navigation("Compras");
@@ -718,11 +723,6 @@ namespace project_web.Migrations
             modelBuilder.Entity("project_web.Models.TipoEvento", b =>
                 {
                     b.Navigation("Eventos");
-                });
-
-            modelBuilder.Entity("project_web.Models.project_ticketUser", b =>
-                {
-                    b.Navigation("Compras");
                 });
 #pragma warning restore 612, 618
         }

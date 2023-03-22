@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace project_web.Models;
 
-public partial class ProjectTicketContext : IdentityDbContext
+public partial class ProjectTicketContext : IdentityDbContext<project_ticketUser>
 {
     public ProjectTicketContext()
     {
@@ -104,9 +104,6 @@ public partial class ProjectTicketContext : IdentityDbContext
             entity.Property(e => e.FechaReserva)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_reserva");
-            entity.Property(e => e.IdCliente)
-                .HasMaxLength(255)
-                .HasColumnName("id_cliente");
             entity.Property(e => e.IdEntrada)
                 .HasColumnType("int(11)")
                 .HasColumnName("id_entrada");
