@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ProjectTicketContext>(options =>
 });
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ProjectTicketContext>();
+    .AddEntityFrameworkStores<ProjectTicketContext>().AddDefaultTokenProviders();
 
 
 var app = builder.Build();
@@ -29,9 +29,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
-
 app.UseAuthorization();
+app.UseAuthentication();
+
+
 
 app.MapControllerRoute(
     name: "default",

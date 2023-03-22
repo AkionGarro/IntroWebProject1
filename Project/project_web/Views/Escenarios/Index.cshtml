@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Escenarios</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-hover  table table-dark table-striped">
     <thead>
         <tr>
             <th>
@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Localizacion)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
             </th>
             <th>
@@ -29,7 +29,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedBy)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Active)
             </th>
@@ -45,7 +45,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Localizacion)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
@@ -56,7 +56,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
