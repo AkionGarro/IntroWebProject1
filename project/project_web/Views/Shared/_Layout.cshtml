@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/project_web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/myStyles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+5rNJDVgxnrbeknmhXV2IyWFjK7V1Fk/15xpwZKjotE65w7iM2BZJmXBPjevhlbmPj7cLszpJ1gsgGWs0s8Ow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
 </head>
 <body>
     <header>
@@ -70,12 +73,26 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="py-2">
         <div class="container">
-            &copy; 2023 - project_web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        &copy; 2023 TecTickets. Todos los derechos reservados. 
+                        <p>
+                        Desarrollado por
+                        <a href="https://www.linkedin.com/in/luz-clara-mora-salazar/"><i class="fab fa-linkedin"></i></a> Luz Mora &
+                        <a href="https://www.linkedin.com/in/akion-garro/"><i class="fab fa-linkedin"></i></a> Akion Garro
+                        </p>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
