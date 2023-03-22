@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace project_web.Models;
 
-public partial class ProjectTicketContext : IdentityDbContext<project_ticketUser>
+public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
 {
     public ProjectTicketContext()
     {
