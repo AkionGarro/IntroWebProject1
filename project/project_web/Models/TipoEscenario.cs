@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace project_web.Models;
 
@@ -20,6 +21,6 @@ public partial class TipoEscenario
     public bool Active { get; set; }
 
     public int IdEscenario { get; set; }
-
+    [DisplayName("Id escenario")]
     public virtual Escenario IdEscenarioNavigation { get; set; } = null!;
 }
