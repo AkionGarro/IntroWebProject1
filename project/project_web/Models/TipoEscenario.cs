@@ -22,5 +22,5 @@ public partial class TipoEscenario
 
     public int IdEscenario { get; set; }
     [DisplayName("Id escenario")]
-    public virtual Escenario IdEscenarioNavigation { get; set; } = null!;
+    public virtual Escenario? IdEscenarioNavigation { get; set; } 
 }

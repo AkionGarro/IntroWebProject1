@@ -26,5 +26,5 @@ public partial class Asiento
 
     public int IdEscenario { get; set; }
 
-    public virtual Escenario IdEscenarioNavigation { get; set; } = null!;
+    public virtual Escenario? IdEscenarioNavigation { get; set; } 
 }

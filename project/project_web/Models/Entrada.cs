@@ -27,5 +27,5 @@ public partial class Entrada
 
     public virtual ICollection<Compra> Compras { get; } = new List<Compra>();
 
-    public virtual Evento IdEventoNavigation { get; set; } = null!;
+    public virtual Evento? IdEventoNavigation { get; set; } 
 }
