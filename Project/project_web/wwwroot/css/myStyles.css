@@ -67,3 +67,20 @@
 .mydropdown:hover .mydropdown-content {
     display: block;
 }
+
+
+
+.tablesArea{
+    height:60vh;
+
+}
+
+.footerArea {
+    background-color: rgb(203, 203, 203);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
