@@ -76,17 +76,30 @@
 }
 
 .footerArea {
-    background-color: rgb(203, 203, 203);
-    position: fixed;
-    margin-top: 20px;
-    left: 0;
+    background-color: rgb(230, 230, 230);
+    position: absolute;
     bottom: 0;
     width: 100%;
-    text-align: center;
+    height:auo;
 }
 
 
 .containerAr{
     height:100vh;
+
+}
+
+.homeContainer {
+    position: relative;
+    min-height: 100vh;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 50px; /* Footer height */
 }
 
