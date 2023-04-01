@@ -76,11 +76,14 @@
 }
 
 .footerArea {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(15, 15, 16);
     position: absolute;
     bottom: 0;
     width: 100%;
-    height:auo;
+    height: auto;
+    color:white;
+    font-family:Roboto
+   
 }
 
 
@@ -103,3 +106,71 @@
     padding-bottom: 50px; /* Footer height */
 }
 
+.buttonNewItem{
+ background-color:rgb(0, 0, 0);
+ margin:20px auto;
+ border-radius:10px
+
+}
+
+.buttonNewItem:hover {
+    background-color: rgb(28, 18, 79) !important;
+}
+
+.buttonNewItem a {
+    color: white;
+    text-decoration:none;
+    font-size:20px;
+    font-family:Roboto;
+    font-weight:bold;
+    
+}
+
+.buttonNewItem a svg {
+    margin:2px;
+}
+
+.headerStyles {
+    background-color: rgb(24, 24, 35);
+    margin-bottom: 2rem;
+}
+
+.links{
+    color:white !important;
+    font-family:Roboto;
+    font-size:20px;
+
+}
+.home{
+    font-weight:bold;
+}
+
+.btn-register {
+    background-color: rgb(18, 95, 148) ;
+    margin: 0 10px;
+    border-color: none !important;
+    color: white;
+}
+    .btn-register:hover {
+        background-color: rgb(19, 106, 167);
+        margin: 0 10px;
+        border-color: none !important;
+        color: white;
+    }
+.btn-login {
+    background-color: rgb(40, 138, 122) ;
+    margin: 0 10px;
+    border-color: none !important;
+    color: white;
+}
+
+    .btn-login:hover {
+        background-color: rgb(55, 169, 154);
+        margin: 0 10px;
+        border-color: none !important;
+        color: white;
+    }
+
+.container-carrousel{
+    margin-bottom:5rem;
+}

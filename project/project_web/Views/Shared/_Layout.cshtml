@@ -14,50 +14,50 @@
 
 </head>
 <body>
-    <header>
+    <header class="headerStyles">
 
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary ">
             <div class="container-fluid">
-                <a class="navbar-brand text-dark" asp-area="" asp-controller="Home" asp-action="Index">TecTickets</a>
+                <a class="navbar-brand links home" asp-area="" asp-controller="Home" asp-action="Index">TecTickets</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Entradas" asp-action="Index">Entradas</a>
+                            <a class="nav-link links" asp-area="" asp-controller="Entradas" asp-action="Index">Entradas</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle links" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestión Eventos
                             </a>
                         
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item text-dark" asp-area="" asp-controller="Eventoes" asp-action="Index">Eventos</a>
+                                    <a class="dropdown-item links" asp-area="" asp-controller="Eventoes" asp-action="Index">Eventos</a>
                                     </a>
                                 </li>
-                                <li> <a class="dropdown-item text-dark" asp-area="" asp-controller="TipoEventoes" asp-action="Index">Tipo de Evento</a></li>
+                                <li> <a class="dropdown-item links" asp-area="" asp-controller="TipoEventoes" asp-action="Index">Tipo de Evento</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle links" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestión Escenarios
                             </a>
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item text-dark" asp-area="" asp-controller="Escenarios" asp-action="Index">Escenarios</a>
+                                    <a class="dropdown-item links" asp-area="" asp-controller="Escenarios" asp-action="Index">Escenarios</a>
                                     </a>
                                 </li>
-                                <li> <a class="dropdown-item text-dark" asp-area="" asp-controller="TipoEscenarios" asp-action="Index">Tipos Escenarios</a></li>
-                                <li>  <a class="dropdown-item text-dark" asp-area="" asp-controller="Asiento" asp-action="Index">Asientos</a></li>
+                                <li> <a class="dropdown-item links" asp-area="" asp-controller="TipoEscenarios" asp-action="Index">Tipos Escenarios</a></li>
+                                <li>  <a class="dropdown-item links" asp-area="" asp-controller="Asiento" asp-action="Index">Asientos</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <partial name="_LoginPartial"  />
     
                 </div>
             </div>
@@ -70,7 +70,7 @@
             
         
     </header>
-    <div class="container">
+    <div class="container container-carrousel">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -79,7 +79,7 @@
       
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p>
+                    <p class="mt-4"> 
                         &copy; 2023 TecTickets. Todos los derechos reservados.
                     </p>
 
@@ -89,27 +89,27 @@
                         </p>
                         <div class="d-flex justify-content-center gap-1 align-items-center">
                         <a href="https://www.linkedin.com/in/luz-clara-m-9b026721a/" target="_blank" title="linkedin">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <rect x="4" y="4" width="16" height="16" rx="2" />
-                                <line x1="8" y1="11" x2="8" y2="16" />
-                                <line x1="8" y1="8" x2="8" y2="8.01" />
-                                <line x1="12" y1="16" x2="12" y2="11" />
-                                <path d="M16 16v-3a2 2 0 0 0 -4 0" />
-                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                            <line x1="8" y1="11" x2="8" y2="16" />
+                            <line x1="8" y1="8" x2="8" y2="8.01" />
+                            <line x1="12" y1="16" x2="12" y2="11" />
+                            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+                        </svg>
                         </a>
                     
 
                         <a href="https://www.linkedin.com/in/akion-garro/" target="_blank" title="linkedin">
-                            
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <rect x="4" y="4" width="16" height="16" rx="2" />
-                                <line x1="8" y1="11" x2="8" y2="16" />
-                                <line x1="8" y1="8" x2="8" y2="8.01" />
-                                <line x1="12" y1="16" x2="12" y2="11" />
-                                <path d="M16 16v-3a2 2 0 0 0 -4 0" />
-                            </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                            <line x1="8" y1="11" x2="8" y2="16" />
+                            <line x1="8" y1="8" x2="8" y2="8.01" />
+                            <line x1="12" y1="16" x2="12" y2="11" />
+                            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+                        </svg>
                         </a>
                         </div> 
                 </div>
