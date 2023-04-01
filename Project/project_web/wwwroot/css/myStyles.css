@@ -34,15 +34,12 @@
     }
 
     /* Add a red background color to navbar links on hover */
-    .mynavbar a:hover, .mydropdown:hover .mydropbtn {
-        background-color: rgb(212, 212, 212);
-    }
+  
 
 /* Dropdown content (hidden by default) */
 .mydropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -58,15 +55,35 @@
         text-align: left;
     }
 
-        /* Add a grey background color to dropdown links on hover */
-        .mydropdown-content a:hover {
-            background-color: #ddd;
-        }
+
 
 /* Show the dropdown menu on hover */
 .mydropdown:hover .mydropdown-content {
     display: block;
 }
+
+
+
+
+.headerStyles {
+    background-color: rgb(24, 24, 35);
+    margin-bottom: 2rem;
+}
+
+.bg-color-navs {
+    background-color: rgb(24, 24, 35);
+}
+
+.links {
+    color: white !important;
+    font-family: Roboto;
+    font-size: 20px;
+}
+    .links:hover {
+        background-color: rgb(38, 38, 47);
+    }
+
+
 
 
 
@@ -131,17 +148,7 @@
     margin:2px;
 }
 
-.headerStyles {
-    background-color: rgb(24, 24, 35);
-    margin-bottom: 2rem;
-}
 
-.links{
-    color:white !important;
-    font-family:Roboto;
-    font-size:20px;
-
-}
 .home{
     font-weight:bold;
 }
