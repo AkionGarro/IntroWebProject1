@@ -11,7 +11,7 @@
         <object data="/svg/agregar.svg"></object>
     </a>  
 </p>
-<table class="table table-hover  table table-dark table-striped">
+<table id="myTable" class="display">
     <thead>
         <tr>
             <th>
@@ -82,3 +82,14 @@
 }
     </tbody>
 </table>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+}

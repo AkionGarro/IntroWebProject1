@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 <div class="tablesArea">
-    <table class="table">
+    <table id="myTable" class="display">
         <thead>
             <tr>
                 <th>
@@ -89,4 +89,14 @@
     </table>
 
 </div>
+
+@section Scripts{
+
+<script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+</script>
+
+}
 
