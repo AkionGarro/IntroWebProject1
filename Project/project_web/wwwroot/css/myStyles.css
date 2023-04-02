@@ -182,3 +182,8 @@
 .container-carrousel{
     margin-bottom:7rem;
 }
+
+.tablesArea a:hover{
+    font-size:17px !important;
+
+}
