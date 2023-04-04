@@ -165,14 +165,14 @@
         border-color: none !important;
         color: white;
     }
-.btn-login {
+.btn-login, .btn-logout {
     background-color: rgb(63, 131, 119) ;
     margin: 0 10px;
     border-color: none !important;
     color: white;
 }
 
-    .btn-login:hover {
+    .btn-login:hover, .btn-logout:hover{
         background-color: rgb(55, 169, 154);
         margin: 0 10px;
         border-color: none !important;
@@ -185,5 +185,21 @@
 
 .tablesArea a:hover{
     font-size:17px !important;
+
+}
+
+
+.createContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+    margin:0 auto;
+    
+}
+
+.createContainerBody{
+
 
 }

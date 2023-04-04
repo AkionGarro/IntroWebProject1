@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using project_web.Models.DbModels;
 
 namespace project_web.Models;
 
@@ -311,4 +312,6 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    public DbSet<project_web.Models.DbModels.DetallesEvento>? DetallesEvento { get; set; }
 }

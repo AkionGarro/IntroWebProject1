@@ -56,8 +56,10 @@ namespace project_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoAsiento,Disponibles,Precio,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,Active,IdEvento")] Entrada entrada)
+        public async Task<IActionResult> Create([Bind("Id,TipoAsiento,Disponibles,Precio,CreatedAt,CreatedBy,UpdatedBy,IdEvento")] Entrada entrada)
         {
+            entrada.UpdatedAt = DateTime.Now;
+            entrada.Active = true;
             if (ModelState.IsValid)
             {
                 _context.Add(entrada);
