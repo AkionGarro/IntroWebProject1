@@ -36,7 +36,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Active)
                 </th>
-
+                <th>
+                   Escenario
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -54,7 +56,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Active)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdEscenario)
+                    </td>
                     <td>
                         <div class="d-flex flex-row gap-3 text-center ">
                             <div class="d-flex flex-column text-center align-items-center">

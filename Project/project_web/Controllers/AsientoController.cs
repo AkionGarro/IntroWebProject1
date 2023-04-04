@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using project_web.Models;
 
 namespace project_web.Controllers
@@ -21,6 +22,7 @@ namespace project_web.Controllers
         // GET: Asiento
         public async Task<IActionResult> Index()
         {
+        
             var projectTicketContext = _context.Asientos.Include(a => a.IdEscenarioNavigation);
             return View(await projectTicketContext.ToListAsync());
         }
@@ -47,7 +49,7 @@ namespace project_web.Controllers
         // GET: Asiento/Create
         public IActionResult Create()
         {
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id");
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre");
             return View();
         }
 
@@ -64,7 +66,8 @@ namespace project_web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", asiento.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", asiento.IdEscenario);
+            
             return View(asiento);
         }
 
@@ -81,7 +84,7 @@ namespace project_web.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", asiento.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", asiento.IdEscenario);
             return View(asiento);
         }
 
@@ -117,7 +120,7 @@ namespace project_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", asiento.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", asiento.IdEscenario);
             return View(asiento);
         }
 
