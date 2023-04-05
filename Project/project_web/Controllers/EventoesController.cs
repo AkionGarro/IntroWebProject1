@@ -48,8 +48,8 @@ namespace project_web.Controllers
         // GET: Eventoes/Create
         public IActionResult Create()
         {
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id");
-            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Id");
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre");
+            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Descripcion");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace project_web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", evento.IdEscenario);
-            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Id", evento.IdTipoEvento);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", evento.IdEscenario);
+            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Descripcion", evento.IdTipoEvento);
             return View(evento);
         }
 
@@ -84,8 +84,8 @@ namespace project_web.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", evento.IdEscenario);
-            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Id", evento.IdTipoEvento);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", evento.IdEscenario);
+            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Descripcion", evento.IdTipoEvento);
             return View(evento);
         }
 
@@ -121,8 +121,8 @@ namespace project_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", evento.IdEscenario);
-            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Id", evento.IdTipoEvento);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", evento.IdEscenario);
+            ViewData["IdTipoEvento"] = new SelectList(_context.TipoEventos, "Id", "Descripcion", evento.IdTipoEvento);
             return View(evento);
         }
 
