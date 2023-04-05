@@ -47,7 +47,7 @@ namespace project_web.Controllers
         // GET: TipoEscenarios/Create
         public IActionResult Create()
         {
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id");
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace project_web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", tipoEscenario.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "", tipoEscenario.IdEscenario);
             return View(tipoEscenario);
         }
 
@@ -81,7 +81,7 @@ namespace project_web.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", tipoEscenario.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", tipoEscenario.IdEscenario);
             return View(tipoEscenario);
         }
 
@@ -117,7 +117,7 @@ namespace project_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Id", tipoEscenario.IdEscenario);
+            ViewData["IdEscenario"] = new SelectList(_context.Escenarios, "Id", "Nombre", tipoEscenario.IdEscenario);
             return View(tipoEscenario);
         }
 
