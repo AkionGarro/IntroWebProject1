@@ -1,0 +1,63 @@
+﻿@model project_web.Models.DbModels.DetallesEvento
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="containerAr">
+<h1>Edit</h1>
+
+<h4>DetallesEvento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoEvento" class="control-label"></label>
+                <input asp-for="TipoEvento" class="form-control" />
+                <span asp-validation-for="TipoEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoEscenario" class="control-label"></label>
+                <input asp-for="TipoEscenario" class="form-control" />
+                <span asp-validation-for="TipoEscenario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Escenario" class="control-label"></label>
+                <input asp-for="Escenario" class="form-control" />
+                <span asp-validation-for="Escenario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacion" class="control-label"></label>
+                <input asp-for="Localizacion" class="form-control" />
+                <span asp-validation-for="Localizacion" class="text-danger"></span>
+            </div>
+                <div class="d-flex gap-1 mt-4">
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+
+                </div>
+        </form>
+    </div>
+</div>
+
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
