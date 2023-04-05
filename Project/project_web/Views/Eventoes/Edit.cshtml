@@ -58,16 +58,20 @@
                 <select asp-for="IdEscenario" class="form-control" asp-items="ViewBag.IdEscenario"></select>
                 <span asp-validation-for="IdEscenario" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                <div class="d-flex gap-1 mt-4">
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+
+                </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -47,7 +47,7 @@ namespace project_web.Controllers
         // GET: Entradas/Create
         public IActionResult Create()
         {
-            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Id");
+            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Descripcion");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace project_web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Id", entrada.IdEvento);
+            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Descripcion", entrada.IdEvento);
             return View(entrada);
         }
 
@@ -83,7 +83,7 @@ namespace project_web.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Id", entrada.IdEvento);
+            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Descripcion", entrada.IdEvento);
             return View(entrada);
         }
 
@@ -119,7 +119,7 @@ namespace project_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Id", entrada.IdEvento);
+            ViewData["IdEvento"] = new SelectList(_context.Eventos, "Id", "Descripcion", entrada.IdEvento);
             return View(entrada);
         }
 
