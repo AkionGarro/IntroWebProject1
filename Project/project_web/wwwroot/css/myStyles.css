@@ -171,8 +171,11 @@
     border-color: none !important;
     color: white;
 }
+    .btn-logout{
+        min-width:5rem;
+    }
 
-    .btn-login:hover, .btn-logout:hover{
+    .btn-login:hover, .btn-logout:hover {
         background-color: rgb(55, 169, 154);
         margin: 0 10px;
         border-color: none !important;
@@ -201,5 +204,12 @@
 
 .createContainerBody{
 
+
+}
+
+.font-pr{
+    font-family:Roboto;
+    font-weight:900;
+    text-transform:capitalize;
 
 }
