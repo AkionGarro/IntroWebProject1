@@ -49,7 +49,7 @@ namespace project_web.Controllers
         public IActionResult Create()
         {
             ViewData["IdEntrada"] = new SelectList(_context.Entradas, "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace project_web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdEntrada"] = new SelectList(_context.Entradas, "Id", "Id", compra.IdEntrada);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", compra.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", compra.UserId);
             return View(compra);
         }
 
@@ -85,7 +85,7 @@ namespace project_web.Controllers
                 return NotFound();
             }
             ViewData["IdEntrada"] = new SelectList(_context.Entradas, "Id", "Id", compra.IdEntrada);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", compra.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", compra.UserId);
             return View(compra);
         }
 
@@ -122,7 +122,7 @@ namespace project_web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdEntrada"] = new SelectList(_context.Entradas, "Id", "Id", compra.IdEntrada);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", compra.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", compra.UserId);
             return View(compra);
         }
 

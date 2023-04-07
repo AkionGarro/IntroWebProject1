@@ -27,7 +27,7 @@ public partial class Compra
     public int IdEntrada { get; set; }
 
     [ForeignKey("User")]
-    public string UserId { get; set; } = null!;
+    public string? UserId { get; set; }
 
     public virtual project_ticketUser? User { get; set; } 
     public virtual Entrada? IdEntradaNavigation { get; set; }
