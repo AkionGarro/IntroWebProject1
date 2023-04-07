@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using project_web.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -11,9 +12,17 @@ builder.Services.AddDbContext<ProjectTicketContext>(options =>
     options.UseMySQL(connection);
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+/*builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ProjectTicketContext>().AddDefaultTokenProviders();
+*/
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ProjectTicketContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
