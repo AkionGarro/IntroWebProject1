@@ -59,16 +59,21 @@
                     <label asp-for="UserId" class="control-label"></label>
                     <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="d-flex gap-1 mt-4">
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                    </div>
+
+
                 </div>
             </form>
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

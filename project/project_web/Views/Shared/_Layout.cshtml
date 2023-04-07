@@ -34,12 +34,14 @@
                         <li class="nav-item">
                             <a class="nav-link links" asp-area="" asp-controller="DetallesEvento" asp-action="Index">Eventos Disponibles</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link links" asp-area="" asp-controller="Compras" asp-action="Index">Boletería</a>
+                        </li>
 
                         @if(SignInManager.IsSignedIn(User))
                         {
                         <li class="nav-item">
-                            <a class="nav-link links" asp-area="" asp-controller="Entradas" asp-action="Index">Entradas</a>
+                            <a class="nav-link links" asp-area="" asp-controller="Entradas" asp-action="Index">Crear Entradas</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle links" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
