@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using project_web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -18,11 +21,42 @@ builder.Services.AddDbContext<ProjectTicketContext>(options =>
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ProjectTicketContext>()
+    .AddDefaultUI()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.AddRazorPages();
+
+builder.Services.AddMvc(options =>
+{
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.Events.OnRedirectToAccessDenied = context =>
+        {
+            context.Response.Redirect("/Account/AccessDenied");
+            return Task.CompletedTask;
+        };
+        options.Events.OnRedirectToLogin = context =>
+        {
+            context.Response.Redirect("/Account/Login?returnUrl=" + context.Request.Path);
+            return Task.CompletedTask;
+        };
+    });
+
+// Add authorization
+builder.Services.AddAuthorization();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -34,17 +68,21 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 
+    endpoints.MapRazorPages();
+});
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
 app.Run();

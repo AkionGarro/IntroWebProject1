@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Mysqlx.Cursor;
 using project_web.Models.DbModels;
 using project_web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace project_web.Controllers.DbControllers
 {
+    [Authorize]
     public class DetallesEventoController : Controller
     {
         private readonly ProjectTicketContext _context;

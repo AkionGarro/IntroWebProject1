@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using project_web.Models;
 
 namespace project_web.Controllers
 {
+    [Authorize]
     public class ComprasController : Controller
     {
         private readonly ProjectTicketContext _context;
@@ -21,6 +23,7 @@ namespace project_web.Controllers
         // GET: Compras
         public async Task<IActionResult> Index()
         {
+
             var projectTicketContext = _context.Compras.Include(c => c.IdEntradaNavigation).Include(c => c.User);
             return View(await projectTicketContext.ToListAsync());
         }
