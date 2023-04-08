@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using project_web.Models.DbModels;
+using project_web.Models;
 
 namespace project_web.Models;
 
@@ -314,4 +315,6 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
     public DbSet<project_web.Models.DbModels.DetallesEvento>? DetallesEvento { get; set; }
+
+    public DbSet<project_web.Models.RolesModel>? Roles { get; set; }
 }
