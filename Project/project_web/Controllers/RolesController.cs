@@ -22,11 +22,12 @@ namespace project_web.Controllers
         }
 
         // GET: RolesController
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-           
 
-            return View();
+            var roles = await roleManager.Roles.ToListAsync();
+            return View(roles);
 
 
         }
