@@ -23,10 +23,10 @@ namespace project_web.Controllers
 
         // GET: RolesController
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 
-            var roles = await roleManager.Roles.ToListAsync();
+            var roles = roleManager.Roles;
             return View(roles);
 
 
@@ -99,25 +99,30 @@ namespace project_web.Controllers
             }
         }
 
-        // GET: RolesController/Delete/5
-        public ActionResult Delete(int id)
+
+        public async Task<IActionResult> Delete(string id)
         {
-            return View();
+            var role = await roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            var result = await roleManager.DeleteAsync(role);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(role);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // POST: RolesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
+
+
     }
 }

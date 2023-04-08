@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityRole
+
+<h2>Delete Role</h2>
+
+@Html.ValidationSummary()
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name" class="form-control" disabled />
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
