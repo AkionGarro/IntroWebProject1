@@ -14,11 +14,14 @@ namespace project_web.Controllers
 
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly ProjectTicketContext _context;
-
-        public RolesController(RoleManager<IdentityRole> roleManager, ProjectTicketContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public RolesController(RoleManager<IdentityRole> roleManager, ProjectTicketContext context,
+                                UserManager<IdentityUser> _userManager)
         {
             this.roleManager = roleManager;
             _context = context;
+            this._userManager = _userManager;
+            
         }
 
         // GET: RolesController
@@ -28,8 +31,6 @@ namespace project_web.Controllers
 
             var roles = roleManager.Roles;
             return View(roles);
-
-
         }
 
         // GET: RolesController/Details/5
@@ -51,7 +52,7 @@ namespace project_web.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index");
                 }
                 foreach (IdentityError error in result.Errors)
                 {
@@ -78,24 +79,68 @@ namespace project_web.Controllers
             }
         }
 
-        // GET: RolesController/Edit/5
-        public ActionResult Edit(int id)
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(string id)
         {
-            return View();
+            var role = await roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return View("Index");
+            }
+
+            var model = new EditRoles
+            {
+                Id = role.Id,
+                RoleName = role.Name
+            };
+
+            // Retrieve all the Users
+            foreach (var user in _userManager.Users.ToList())
+            {
+                // If the user is in this role, add the username to
+                // Users property of EditRoleViewModel. This model
+                // object is then passed to the view for display
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.Users.Add(user.UserName);
+                }
+            }
+
+            return View(model);
         }
 
-        // POST: RolesController/Edit/5
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(EditRoles model)
         {
-            try
+          
+            var role = await roleManager.FindByIdAsync(model.Id);
+
+            if (role == null)
             {
-                return RedirectToAction(nameof(Index));
+                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
+                return View("NotFound");
             }
-            catch
+            else
             {
-                return View();
+                role.Name = model.RoleName;
+
+                // Update the Role using UpdateAsync
+                var result = await roleManager.UpdateAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
             }
         }
 

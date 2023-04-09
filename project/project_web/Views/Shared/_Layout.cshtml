@@ -30,9 +30,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                        <li class="nav-item">
-                            <a class="nav-link links" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link links" asp-area="" asp-controller="DetallesEvento" asp-action="Index">Eventos Disponibles</a>
                         </li>
@@ -42,6 +40,9 @@
 
                         @if(SignInManager.IsSignedIn(User))
                         {
+                        <li class="nav-item">
+                            <a class="nav-link links" asp-area="" asp-controller="Roles" asp-action="Index">Gestión Roles</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link links" asp-area="" asp-controller="Entradas" asp-action="Index">Crear Entradas</a>
                         </li>
