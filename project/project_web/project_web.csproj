@@ -26,4 +26,10 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Models\Roles\EditRoles.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

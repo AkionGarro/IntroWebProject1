@@ -53,8 +53,9 @@
                         <td>
 
                             <div class="d-flex flex-row gap-3 text-center ">
-                                <div class="d-flex flex-column text-center align-items-center">
 
+
+                                <div class="d-flex flex-column text-center align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <circle cx="9" cy="7" r="4" />
@@ -62,19 +63,8 @@
                                         <path d="M16 11h6m-3 -3v6" />
                                     </svg>
 
-                                    <a class="text-decoration-none text-black" asp-action="Add" asp-route-id="@item.Id">Add User</a>
-                                </div>
 
-
-                            
-                                <div class="d-flex flex-column text-center align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                                    </svg>
-
-                                    <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Edit" asp-route-id="@item.Id">Manage</a>
                                 </div>
 
 

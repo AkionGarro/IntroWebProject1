@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations;
-namespace project_web.Models
+
+namespace project_web.Models.Roles
 {
     public class EditRoles
     {
         public EditRoles()
         {
-            this.Users = new List<string>();
+            Users = new List<string>();
         }
 
         public string Id { get; set; }
