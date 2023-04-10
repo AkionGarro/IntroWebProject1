@@ -9,7 +9,7 @@ using project_web.Models.Roles;
 
 namespace project_web.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles ="Admin")]
     public class RolesController : Controller
     {
 

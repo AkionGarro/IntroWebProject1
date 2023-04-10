@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ProjectTicketContext>(options =>
     .AddEntityFrameworkStores<ProjectTicketContext>().AddDefaultTokenProviders();
 */
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ProjectTicketContext>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();
