@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -56,12 +57,17 @@ namespace project_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoAsiento,Disponibles,Precio,CreatedAt,CreatedBy,UpdatedBy,IdEvento")] Entrada entrada)
+        public async Task<IActionResult> Create([Bind("Id,TipoAsiento,Disponibles,Precio,IdEvento")] Entrada entrada)
         {
-            entrada.UpdatedAt = DateTime.Now;
-            entrada.Active = true;
+
             if (ModelState.IsValid)
             {
+                entrada.CreatedAt = DateTime.Now;
+                entrada.UpdatedAt = DateTime.Now;
+                string username = User.FindFirstValue(ClaimTypes.Name);
+                entrada.CreatedBy = username;
+                entrada.UpdatedBy = username;
+                entrada.Active = true;
                 _context.Add(entrada);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

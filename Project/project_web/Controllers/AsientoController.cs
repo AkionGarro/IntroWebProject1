@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,7 @@ namespace project_web.Controllers
     public class AsientoController : Controller
     {
         private readonly ProjectTicketContext _context;
+
 
         public AsientoController(ProjectTicketContext context)
         {
@@ -58,10 +61,19 @@ namespace project_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripcion,Cantidad,CreatedAt,CreatedBy,UpdatedAt,UpdatedBy,Active,IdEscenario")] Asiento asiento)
+        public async Task<IActionResult> Create([Bind("Id,Descripcion,Cantidad,IdEscenario")] Asiento asiento)
         {
+           
+            
+
             if (ModelState.IsValid)
             {
+                asiento.CreatedAt = DateTime.Now;
+                asiento.UpdatedAt = DateTime.Now;
+                string username = User.FindFirstValue(ClaimTypes.Name);
+                asiento.CreatedBy = username;
+                asiento.UpdatedBy = username;
+                asiento.Active = true;
                 _context.Add(asiento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

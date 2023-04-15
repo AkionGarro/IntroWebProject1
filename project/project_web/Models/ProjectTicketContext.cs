@@ -59,7 +59,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Created_At");
             entity.Property(e => e.CreatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Created_By");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(100)
@@ -71,7 +71,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Updated_At");
             entity.Property(e => e.UpdatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Updated_By");
 
             entity.HasOne(d => d.IdEscenarioNavigation).WithMany(p => p.Asientos)
@@ -99,7 +99,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Created_At");
             entity.Property(e => e.CreatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Created_By");
             entity.Property(e => e.FechaPago)
                 .HasColumnType("datetime")
@@ -113,7 +113,10 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
             entity.Property(e => e.UpdatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("Updated_At");
-            entity.Property(e => e.UpdatedBy).HasColumnType("int(11)");
+            entity.Property(e => e.UpdatedBy)
+               .HasColumnType("varchar(100)")
+               .HasColumnName("UpdatedBy");
+        
 
             entity.HasOne(d => d.IdEntradaNavigation).WithMany(p => p.Compras)
                 .HasForeignKey(d => d.IdEntrada)
@@ -137,7 +140,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Created_At");
             entity.Property(e => e.CreatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Created_By");
             entity.Property(e => e.Disponibles)
                 .HasColumnType("int(11)")
@@ -155,7 +158,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Updated_At");
             entity.Property(e => e.UpdatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Updated_By");
 
             entity.HasOne(d => d.IdEventoNavigation).WithMany(p => p.Entrada)
@@ -260,7 +263,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Created_At");
             entity.Property(e => e.CreatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Created_By");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(100)
@@ -272,7 +275,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Updated_At");
             entity.Property(e => e.UpdatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Updated_By");
 
             entity.HasOne(d => d.IdEscenarioNavigation).WithMany(p => p.TipoEscenarios)

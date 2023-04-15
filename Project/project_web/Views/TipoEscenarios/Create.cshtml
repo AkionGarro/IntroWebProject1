@@ -4,32 +4,13 @@
 <div >
     <div class="row containerAr">
         <div class="col-md-4">
+            <h1>Crear Tipos de Escenarios</h1>
             <form asp-controller="TipoEscenarios" asp-action="Create" method="post" role="form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Descripcion" class="control-label"></label>
                     <input asp-for="Descripcion" class="form-control" />
                     <span asp-validation-for="Descripcion" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CreatedBy" class="control-label"></label>
-                    <input asp-for="CreatedBy" class="form-control" />
-                    <span asp-validation-for="CreatedBy" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UpdatedAt" class="control-label"></label>
-                    <input asp-for="UpdatedAt" class="form-control" />
-                    <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UpdatedBy" class="control-label"></label>
-                    <input asp-for="UpdatedBy" class="form-control" />
-                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                    </label>
                 </div>
                 <div class="form-group">
                     <label asp-for="IdEscenario" class="control-label"></label>

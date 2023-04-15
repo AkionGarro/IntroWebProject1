@@ -166,12 +166,10 @@ namespace project_web.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext");
@@ -208,12 +206,10 @@ namespace project_web.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext");
@@ -243,8 +239,9 @@ namespace project_web.Migrations
                         .HasColumnName("Created_At")
                         .HasDefaultValueSql("'current_timestamp()'");
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int(11)")
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Created_By");
 
                     b.Property<string>("Descripcion")
@@ -261,8 +258,9 @@ namespace project_web.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("Updated_At");
 
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int(11)")
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Updated_By");
 
                     b.HasKey("Id")
@@ -295,7 +293,7 @@ namespace project_web.Migrations
                         .HasColumnName("Created_At");
 
                     b.Property<int>("CreatedBy")
-                        .HasColumnType("int(11)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Created_By");
 
                     b.Property<DateTime>("FechaPago")
@@ -315,10 +313,10 @@ namespace project_web.Migrations
                         .HasColumnName("Updated_At");
 
                     b.Property<int>("UpdatedBy")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("varchar(100)")
+                         .HasColumnName("UpdatedBy");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id")
@@ -331,6 +329,40 @@ namespace project_web.Migrations
                     b.ToTable("compra", (string)null);
                 });
 
+            modelBuilder.Entity("project_web.Models.DbModels.DetallesEvento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Escenario")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Localizacion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TipoEscenario")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TipoEvento")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DetallesEvento");
+                });
+
             modelBuilder.Entity("project_web.Models.Entrada", b =>
                 {
                     b.Property<int>("Id")
@@ -341,14 +373,14 @@ namespace project_web.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("Created_At")
                         .HasDefaultValueSql("'current_timestamp()'");
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int(11)")
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Created_By");
 
                     b.Property<int>("Disponibles")
@@ -370,12 +402,12 @@ namespace project_web.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("tipo_asiento");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("Updated_At");
 
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int(11)")
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Updated_By");
 
                     b.HasKey("Id")
@@ -489,6 +521,14 @@ namespace project_web.Migrations
                     b.ToTable("evento", (string)null);
                 });
 
+            modelBuilder.Entity("project_web.Models.Roles.RolesModel", b =>
+                {
+                    b.Property<string>("RoleName")
+                        .HasColumnType("longtext");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("project_web.Models.TipoEscenario", b =>
                 {
                     b.Property<int>("Id")
@@ -506,7 +546,7 @@ namespace project_web.Migrations
                         .HasDefaultValueSql("'current_timestamp()'");
 
                     b.Property<int>("CreatedBy")
-                        .HasColumnType("int(11)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Created_By");
 
                     b.Property<string>("Descripcion")
@@ -524,7 +564,7 @@ namespace project_web.Migrations
                         .HasColumnName("Updated_At");
 
                     b.Property<int>("UpdatedBy")
-                        .HasColumnType("int(11)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Updated_By");
 
                     b.HasKey("Id")
@@ -657,9 +697,7 @@ namespace project_web.Migrations
 
                     b.HasOne("project_web.Models.project_ticketUser", "User")
                         .WithMany("Compras")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("IdEntradaNavigation");
 
