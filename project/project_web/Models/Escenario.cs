@@ -11,15 +11,15 @@ public partial class Escenario
     public string Nombre { get; set; } = null!;
 
     public string Localizacion { get; set; } = null!;
-    [DisplayName("Creado en")]
+   
     public DateTime CreatedAt { get; set; }
-    [DisplayName("Creado por")]
-    public int CreatedBy { get; set; }
-    [DisplayName("Actualizado en")]
+
+    public string? CreatedBy { get; set; }
+
     public DateTime UpdatedAt { get; set; }
-    [DisplayName("Actualizado por")]
-    public int UpdatedBy { get; set; }
-    [DisplayName("Activo")]
+
+    public string? UpdatedBy { get; set; }
+
     public bool Active { get; set; }
 
     public virtual ICollection<Asiento> Asientos { get; } = new List<Asiento>();

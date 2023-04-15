@@ -181,7 +181,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Created_At");
             entity.Property(e => e.CreatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Created_By");
             entity.Property(e => e.Localizacion)
                 .HasMaxLength(100)
@@ -193,7 +193,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
                 .HasColumnType("datetime")
                 .HasColumnName("Updated_At");
             entity.Property(e => e.UpdatedBy)
-                .HasColumnType("int(11)")
+                .HasColumnType("varchar(100)")
                 .HasColumnName("Updated_By");
         });
 

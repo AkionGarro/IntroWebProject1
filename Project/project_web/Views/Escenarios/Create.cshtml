@@ -16,38 +16,20 @@
                     <span asp-validation-for="Localizacion" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col">
-                    <label asp-for="CreatedBy" class="control-label"> Creado por</label>
-                    <input asp-for="CreatedBy" class="form-control" />
-                    <span asp-validation-for="CreatedBy" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="UpdatedBy" class="control-label"> Actualizado por</label>
-                    <input asp-for="UpdatedBy" class="form-control" />
-                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group ">
-                <label asp-for="UpdatedAt" class="control-label">Fecha de actualización</label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-        <br />
-        <div class="form-group form-check">
-            <label class="form-check-label">
-                <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-            </label>
-        </div>
-        <br />
+            
+        <div class="d-flex gap-1 mt-2">
             <div class="form-group">
-            <input type="submit" value="agregar escenario" class="btn btn-info" />
+                <input type="submit" value="agregar escenario" class="btn btn-info" />
+
             </div>
+
+            <div>
+                <a asp-action="Index" class="btn btn-dark">Atrás</a>
+            </div>
+        </div>
+
         </form>
 
-        <div>
-            <a asp-action="Index" class="btn btn-dark">Atrás</a>
-        </div>
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
