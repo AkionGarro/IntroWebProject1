@@ -584,7 +584,7 @@ namespace project_web.Migrations
                         .HasColumnName("id");
 
                     b.Property<int>("Active")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -593,7 +593,7 @@ namespace project_web.Migrations
                         .HasDefaultValueSql("'current_timestamp()'");
 
                     b.Property<int>("CreatedBy")
-                        .HasColumnType("int(11)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Created_By");
 
                     b.Property<string>("Descripcion")
@@ -607,7 +607,7 @@ namespace project_web.Migrations
                         .HasColumnName("Updated_At");
 
                     b.Property<int>("UpdatedBy")
-                        .HasColumnType("int(11)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Updated_By");
 
                     b.HasKey("Id")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -59,6 +60,12 @@ namespace project_web.Controllers
         {
             if (ModelState.IsValid)
             {
+                tipoEvento.CreatedAt = DateTime.Now;
+                tipoEvento.UpdatedAt = DateTime.Now;
+                string username = User.FindFirstValue(ClaimTypes.Name);
+                tipoEvento.CreatedBy = username;
+                tipoEvento.UpdatedBy = username;
+                tipoEvento.Active = true;
                 _context.Add(tipoEvento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
