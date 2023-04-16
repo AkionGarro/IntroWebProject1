@@ -6,6 +6,7 @@ namespace project_web.Models;
 
 public partial class Compra
 {
+
     public int Id { get; set; }
 
     public int Cantidad { get; set; }

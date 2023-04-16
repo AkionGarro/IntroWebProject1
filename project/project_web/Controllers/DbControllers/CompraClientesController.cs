@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -103,10 +104,39 @@ namespace project_web.Controllers.DbControllers
         // POST: CompraClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(IFormCollection collection)
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    
+                    var form = collection.ToList();
+                    var idEntrada = form[4].Value.ToList();
+                    var tipoAsiento = form[5].Value.ToList();
+                    var disponibles = form[6].Value.ToList();
+                    var precios = form[7].Value.ToList();
+                    var cantidad = form[8].Value.ToList();
+                    string username = User.FindFirstValue(ClaimTypes.Name);
+                    string UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    for (var i = 0; i < tipoAsiento.Count(); i++) {
+                        var compra = new Compra();
+                        compra.IdEntrada = Int32.Parse(idEntrada[i]);
+                        compra.Cantidad = Int32.Parse(cantidad[i]);
+                        compra.FechaReserva = DateTime.Now;
+                        compra.FechaPago = DateTime.Now;
+                        compra.CreatedBy = username;
+                        compra.UpdatedBy = username;
+                        compra.UpdatedAt= DateTime.Now;
+                        compra.CreatedAt = DateTime.Now;
+                        compra.Active = true;
+                        compra.UserId = UserId;
+                        _context.Add(compra);
+                        await _context.SaveChangesAsync();  
+                    }
+                    TempData["Success"] = "Las Entradas fueron creadas exitosamente...";
+                }
+ 
                 return RedirectToAction(nameof(Index));
             }
             catch
