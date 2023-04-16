@@ -1,0 +1,105 @@
+﻿@model project_web.Models.EventoAsiento
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<h4>Detalle del Evento</h4>
+<hr />
+<form asp-action="Create">
+ <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Id" />
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Descripcion" class="control-label"></label>
+            <input asp-for="Descripcion" class="form-control" disabled />
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="TipoEvento" class="control-label"></label>
+            <input asp-for="TipoEvento" class="form-control" disabled />
+            <span asp-validation-for="TipoEvento" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Fecha" class="control-label"></label>
+            <input asp-for="Fecha" class="form-control" disabled />
+            <span asp-validation-for="Fecha" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="TipoEscenario" class="control-label"></label>
+            <input asp-for="TipoEscenario" class="form-control" disabled />
+            <span asp-validation-for="TipoEscenario" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Escenario" class="control-label"></label>
+            <input asp-for="Escenario" class="form-control" disabled />
+            <span asp-validation-for="Escenario" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Localizacion" class="control-label"></label>
+            <input asp-for="Localizacion" class="form-control" disabled />
+            <span asp-validation-for="Localizacion" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<hr />
+<h4>Detalle de los Asientos</h4>
+<hr />
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <td> Id </td>
+            <th> Descripcion </th>
+            <th> Cantidad </th>
+            <th> Precio </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Asientos)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Id) </td>
+                <td>
+                    <input type="hidden" asp-for="@item.Descripcion" /> 
+                    @Html.DisplayFor(modelItem => item.Descripcion) 
+                </td>
+                <td>
+                    <input type="hidden" asp-for="@item.Cantidad" />
+                    @Html.DisplayFor(modelItem => item.Cantidad) </td>
+                <td>
+                    <input asp-for="@item.Precio" />
+                    <span asp-validation-for="@item.Precio" class="text-danger"></span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+
+<div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>
+
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}}

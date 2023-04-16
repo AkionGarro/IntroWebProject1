@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace project_web.Models.DbModels
+
+namespace project_web.Models
 {
     public class DetallesEvento
     {

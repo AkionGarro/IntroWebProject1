@@ -5,6 +5,10 @@ namespace project_web.Models;
 
 public partial class Entrada
 {
+    public Entrada()
+    {
+        Compras = new HashSet<Compra>();
+    }
     public int Id { get; set; }
 
     public string TipoAsiento { get; set; } = null!;
