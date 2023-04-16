@@ -42,7 +42,7 @@
                         @Html.DisplayNameFor(model => model.Active)
                     </th>
 
-                    <th> @Html.DisplayNameFor(model => model.IdEvento)</th>
+                    <th> Evento</th>
                     <th></th>
                 </tr>
             </thead>
@@ -64,13 +64,13 @@
                             @Html.DisplayFor(modelItem => item.Active)
                         </td>
                         <td>
-                            @Html.DisplayNameFor(model => item.IdEvento)
+                            @Html.DisplayFor(model => item.IdEventoNavigation.Descripcion)
                         </td>
                         <td>
 
 
                             <div class="d-flex flex-row gap-3 text-center ">
-                                <div class="d-flex flex-column text-center align-items-center">
+                                @*<div class="d-flex flex-column text-center align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
@@ -78,7 +78,7 @@
                                     </svg>
 
                                     <a class="text-decoration-none text-black" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                </div>
+                                </div>*@
 
                                 <div class="d-flex flex-column text-center align-items-center ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -101,6 +101,7 @@
                                     </svg>
                                     <a class="text-decoration-none text-black" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                 }
