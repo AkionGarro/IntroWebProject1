@@ -319,6 +319,8 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
     public DbSet<project_web.Models.DetallesEvento>? DetallesEvento { get; set; }
-
+    public DbSet<project_web.Models.DbModels.CompraCliente>? CompraClientes { get; set; }
     public DbSet<RolesModel>? Roles { get; set; }
+
+    public DbSet<project_web.Models.DbModels.CompraCliente>? CompraCliente { get; set; }
 }
