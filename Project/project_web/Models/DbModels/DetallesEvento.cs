@@ -31,6 +31,5 @@ namespace project_web.Models
         [Display(Name = "Localización")]
         public string Localizacion { get; set; }
 
-
     }
 }

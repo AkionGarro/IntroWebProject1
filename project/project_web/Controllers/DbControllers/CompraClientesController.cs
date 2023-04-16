@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using project_web.Models;
 using project_web.Models.DbModels;
 
-namespace project_web.Controllers
+namespace project_web.Controllers.DbControllers
 {
     public class CompraClientesController : Controller
     {
@@ -50,9 +50,54 @@ namespace project_web.Controllers
         }
 
         // GET: CompraClienteController/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
-            return View();
+            if (id == null) { return NotFound(); }
+
+            var evento = await _context.Eventos
+                                       .Include(esc => esc.IdEscenarioNavigation)
+                                            .ThenInclude(tesc => tesc.TipoEscenarios)
+                                       .Include(te => te.IdTipoEventoNavigation)
+                                       .Where(e => e.Active && e.Id == id)
+                                       .Select(e => new CompraCliente
+                                       {
+                                           Id = e.Id,
+                                           Descripcion = e.Descripcion,
+                                           TipoEvento = e.IdTipoEventoNavigation.Descripcion,
+                                           Fecha = e.Fecha,
+                                           TipoEscenario = e.IdEscenarioNavigation.TipoEscenarios.Select(te => te.Descripcion).FirstOrDefault(),
+                                           Escenario = e.IdEscenarioNavigation.Nombre,
+                                           Localizacion = e.IdEscenarioNavigation.Localizacion
+                                       }).FirstOrDefaultAsync();
+            if (evento == null) { return NotFound(); }
+            var entradas = await (from E in _context.Entradas
+                                  join EVE in _context.Eventos on id equals EVE.Id where EVE.Active && E.Active 
+                                  orderby E.Id ascending
+                                  select new EntradasCantidad
+                                  {
+                                      Id = E.Id,
+                                      TipoAsiento = E.TipoAsiento ,
+                                      Disponibles = E.Disponibles,
+                                      Precio = E.Precio,
+                                      Cantidad = 0
+                                  }).ToListAsync();
+
+            if (entradas == null) { return NotFound(); }
+            var eventoEntrada = new EventoEntrada
+            {
+                Id = evento.Id,
+                Descripcion = evento.Descripcion,
+                TipoEvento = evento.TipoEvento,
+                Fecha = evento.Fecha,
+                TipoEscenario = evento.TipoEscenario,
+                Escenario = evento.Escenario,
+                Localizacion = evento.Localizacion,
+                Entradas = entradas
+            };
+
+            if (eventoEntrada == null) { return NotFound(); }
+
+            return View(eventoEntrada);
         }
 
         // POST: CompraClienteController/Create
