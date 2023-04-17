@@ -35,7 +35,7 @@
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("User"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link links" asp-area="" asp-controller="DetallesEvento" asp-action="Index">Eventos Disponibles</a>
+                                 <a class="dropdown-item links" asp-area="" asp-controller="CompraClientes" asp-action="Index">Eventos Disponibles</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link links" asp-area="" asp-controller="UserInfo" asp-action="Index">Perfil</a>

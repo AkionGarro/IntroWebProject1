@@ -45,9 +45,24 @@ namespace project_web.Controllers.DbControllers
         }
 
         // GET: CompraClienteController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details()
         {
-            return View();
+            string UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var listaCompras = (from C in _context.Compras
+                                 join E in _context.Entradas on C.IdEntrada equals E.Id
+                                 join EVE in _context.Eventos on E.IdEvento equals EVE.Id
+                                 where C.UserId == UserId && C.Active == true
+                                 orderby C.Id ascending
+                                 select new CarritoCompras
+                                 {
+                                     Id = C.Id,
+                                     Cantidad = C.Cantidad,
+                                     Evento = EVE.Descripcion,
+                                     FechaReserva = C.FechaReserva,
+                                     IdEntrada = C.IdEntrada,
+                                     Total = (C.Cantidad* E.Precio),
+                                 }).ToListAsync();
+            return View(await listaCompras);
         }
 
         // GET: CompraClienteController/Create
@@ -113,34 +128,37 @@ namespace project_web.Controllers.DbControllers
                     
                     var form = collection.ToList();
                     var idEntrada = form[4].Value.ToList();
-                    var tipoAsiento = form[5].Value.ToList();
-                    var disponibles = form[6].Value.ToList();
-                    var precios = form[7].Value.ToList();
                     var cantidad = form[8].Value.ToList();
                     string username = User.FindFirstValue(ClaimTypes.Name);
                     string UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    for (var i = 0; i < tipoAsiento.Count(); i++) {
-                        var compra = new Compra();
-                        compra.IdEntrada = Int32.Parse(idEntrada[i]);
-                        compra.Cantidad = Int32.Parse(cantidad[i]);
-                        compra.FechaReserva = DateTime.Now;
-                        compra.FechaPago = DateTime.Now;
-                        compra.CreatedBy = username;
-                        compra.UpdatedBy = username;
-                        compra.UpdatedAt= DateTime.Now;
-                        compra.CreatedAt = DateTime.Now;
-                        compra.Active = true;
-                        compra.UserId = UserId;
-                        _context.Add(compra);
-                        await _context.SaveChangesAsync();  
+                    for (var i = 0; i < cantidad.Count(); i++) {
+                        var entrada = await _context.Entradas.FindAsync(Int32.Parse(idEntrada[i]));
+                        entrada.Disponibles = entrada.Disponibles - Int32.Parse(cantidad[i]);
+
+                            var compra = new Compra
+                            {
+                                IdEntrada = Int32.Parse(idEntrada[i]),
+                                Cantidad = Int32.Parse(cantidad[i]),
+                                FechaReserva = DateTime.Now,
+                                FechaPago = DateTime.Now,
+                                CreatedBy = username,
+                                UpdatedBy = username,
+                                UpdatedAt = DateTime.Now,
+                                CreatedAt = DateTime.Now,
+                                Active = true,
+                                UserId = UserId
+                            };
+                            _context.Add(compra);
+                            await _context.SaveChangesAsync();
                     }
-                    TempData["Success"] = "Las Entradas fueron creadas exitosamente...";
+                    TempData["Success"] = "Reserva éxitosa";
                 }
  
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                TempData["Success"] = "No se pudo realizar la compra";
                 return View();
             }
         }
