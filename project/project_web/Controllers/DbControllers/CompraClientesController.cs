@@ -87,14 +87,16 @@ namespace project_web.Controllers.DbControllers
                                        }).FirstOrDefaultAsync();
             if (evento == null) { return NotFound(); }
             var entradas = await (from E in _context.Entradas
-                                  join EVE in _context.Eventos on id equals EVE.Id where EVE.Active && E.Active 
-                                  orderby E.Id ascending
+                                  join EVE in _context.Eventos on E.IdEvento equals id
+                                  where EVE.Active && E.Active
+                                  group E by new { E.Id, E.TipoAsiento, E.Disponibles, E.Precio } into g
+                                  orderby g.Key.Id ascending
                                   select new EntradasCantidad
                                   {
-                                      Id = E.Id,
-                                      TipoAsiento = E.TipoAsiento ,
-                                      Disponibles = E.Disponibles,
-                                      Precio = E.Precio,
+                                      Id = g.Key.Id,
+                                      TipoAsiento = g.Key.TipoAsiento,
+                                      Disponibles = g.Key.Disponibles,
+                                      Precio = g.Key.Precio,
                                       Cantidad = 0
                                   }).ToListAsync();
 
