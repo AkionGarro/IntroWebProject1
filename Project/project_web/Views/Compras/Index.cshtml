@@ -4,110 +4,109 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="containerAr">
-    <div class="btn btn-primary buttonNewItem">
+        <div class="btn btn-primary buttonNewItem">
 
-        <a asp-action="Create">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <circle cx="6" cy="19" r="2" />
-                <circle cx="17" cy="19" r="2" />
-                <path d="M17 17h-11v-14h-2" />
-                <path d="M6 5l6.005 .429m7.138 6.573l-.143 .998h-13" />
-                <path d="M15 6h6m-3 -3v6" />
-            </svg>
-            Procesar Compra
-        </a>
+            <a asp-action="Create">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="6" cy="19" r="2" />
+                    <circle cx="17" cy="19" r="2" />
+                    <path d="M17 17h-11v-14h-2" />
+                    <path d="M6 5l6.005 .429m7.138 6.573l-.143 .998h-13" />
+                    <path d="M15 6h6m-3 -3v6" />
+                </svg>
+                Procesar Compra
+            </a>
 
-    </div>
-    <table id="myTable" class="display">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cantidad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaReserva)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaPago)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Active)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdEntradaNavigation)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        </div>
+        <table id="myTable" class="display">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cantidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaReserva)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPago)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cantidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaReserva)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaPago)
+                    </th>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdEntradaNavigation.Id)
-                    </td>
-                    <td>
-                        <div class="d-flex flex-row gap-3 text-center ">
-                            <div class="d-flex flex-column text-center align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                                </svg>
-
-                                <a class="text-decoration-none text-black" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            </div>
-
-                            <div class="d-flex flex-column text-center align-items-center ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <circle cx="12" cy="12" r="9" />
-                                    <line x1="12" y1="8" x2="12.01" y2="8" />
-                                    <polyline points="11 12 12 12 12 16 13 16" />
-                                </svg>
-                                <a class="text-decoration-none text-black" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            </div>
-
-                            <div class="d-flex flex-column text-center align-items-center ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="4" y1="7" x2="20" y2="7" />
-                                    <line x1="10" y1="11" x2="10" y2="17" />
-                                    <line x1="14" y1="11" x2="14" y2="17" />
-                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                </svg>
-                                <a class="text-decoration-none text-black" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </div>
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdEntradaNavigation)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaReserva)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaPago)
+                        </td>
 
-</div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdEntradaNavigation.Id)
+                        </td>
+                        <td>
+                            <div class="d-flex flex-row gap-3 text-center ">
+                                <div class="d-flex flex-column text-center align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                                    </svg>
+
+                                    <a class="text-decoration-none text-black" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                </div>
+
+                                <div class="d-flex flex-column text-center align-items-center ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <circle cx="12" cy="12" r="9" />
+                                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                                        <polyline points="11 12 12 12 12 16 13 16" />
+                                    </svg>
+                                    <a class="text-decoration-none text-black" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                </div>
+
+                                <div class="d-flex flex-column text-center align-items-center ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                    <a class="text-decoration-none text-black" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+  
 
 
 @section Scripts{

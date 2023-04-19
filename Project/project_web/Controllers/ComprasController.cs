@@ -11,7 +11,7 @@ using project_web.Models;
 
 namespace project_web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Worker")]
     public class ComprasController : Controller
     {
         private readonly ProjectTicketContext _context;

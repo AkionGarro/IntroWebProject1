@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ using project_web.Models;
 
 namespace project_web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TipoEscenariosController : Controller
     {
         private readonly ProjectTicketContext _context;
