@@ -107,6 +107,7 @@
 
 .containerAr{
     height:100vh;
+    margin-bottom:2rem;
 
 }
 
@@ -213,3 +214,4 @@
     text-transform:capitalize;
 
 }
+
