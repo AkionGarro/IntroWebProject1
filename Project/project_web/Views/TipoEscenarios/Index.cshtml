@@ -4,10 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="containerAr">
-
-
-    <div class="btn btn-primary buttonNewItem">
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="btn btn-primary buttonNewItem">
 
         <a asp-action="Create">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -27,8 +26,8 @@
 
     </div>
 
-    <div class="tablesArea">
-    <table id="myTable" class="display">
+        <div >
+        <table id="myTable" class="display">
         <thead>
             <tr>
                 <th>
@@ -98,9 +97,8 @@
         </tbody>
     </table>
     </div>
+    </div>
 </div>
-
-
 
 @section Scripts{
 

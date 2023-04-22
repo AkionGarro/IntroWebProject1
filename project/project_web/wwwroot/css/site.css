@@ -14,5 +14,17 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 2rem;
+
 }
+
+main{
+    height:100vh;
+}
+
+.containerTables{
+    min-height:100vh;
+}
+
+
+

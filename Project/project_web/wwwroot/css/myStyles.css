@@ -89,7 +89,7 @@
 
 .tablesArea{
     height:60vh;
-
+   
 }
 
 .footerArea {
@@ -107,8 +107,7 @@
 
 .containerAr{
     height:100vh;
-    margin-bottom:2rem;
-
+   
 }
 
 .homeContainer {
@@ -197,16 +196,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     align-items: center;
     margin:0 auto;
     
 }
 
-.createContainerBody{
-
-
-}
 
 .font-pr{
     font-family:Roboto;
@@ -214,4 +208,5 @@
     text-transform:capitalize;
 
 }
+
 
