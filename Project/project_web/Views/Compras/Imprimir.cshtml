@@ -1,0 +1,52 @@
+﻿@model project_web.Models.Compra
+
+@{
+    ViewData["Title"] = "Imprimir";
+}
+
+<h1>Imprimir</h1>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Imprimir">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <label asp-for="Cantidad" class="control-label">@Model.Cantidad</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaReserva" class="control-label"></label>
+                <label asp-for="FechaReserva" class="control-label">@Model.FechaReserva</label>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPago" class="control-label"></label>
+                <label asp-for="FechaPago" class="control-label">@Model.FechaReserva</label>
+              
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEntrada" class="control-label"></label>
+                <label asp-for="IdEntrada" class="control-label">@Model.IdEntrada</label>
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <label asp-for="UserId" class="control-label">@Model.UserId</label>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Imprimir PDF" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

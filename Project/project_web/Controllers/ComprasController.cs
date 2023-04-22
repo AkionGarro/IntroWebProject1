@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using project_web.Models;
+using project_web.Models.DbModels;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace project_web.Controllers
 {
@@ -25,7 +28,7 @@ namespace project_web.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var projectTicketContext = _context.Compras.Include(c => c.IdEntradaNavigation).Include(c => c.User);
+            var projectTicketContext = _context.Compras.Include(c => c.IdEntradaNavigation).Include(c => c.User).Where(c => c.Active == true);
             return View(await projectTicketContext.ToListAsync());
         }
 
@@ -136,8 +139,127 @@ namespace project_web.Controllers
             return View(compra);
         }
 
-        // GET: Compras/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        [HttpGet]
+        public async Task<IActionResult> Imprimir(int? id)
+        {
+            if (id == null || _context.Compras == null)
+            {
+                return NotFound();
+            }
+
+
+            var compra = await _context.Compras
+                .Include(c => c.IdEntradaNavigation)
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (compra == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                compra.FechaPago = DateTime.Now;
+                _context.Update(compra);
+                await _context.SaveChangesAsync();
+            }
+            ViewData["IdEntrada"] = new SelectList(_context.Entradas, "Id", "Id", compra.IdEntrada);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", compra.UserId);
+
+
+            return View(compra);
+        }
+
+
+        [HttpPost, ActionName("Imprimir")]
+        public async Task<IActionResult> ImprimirConfirmed(int id)
+        {
+            if (_context.Compras == null)
+            {
+                return Problem("Entity set 'ProjectTicketContext.Compras'  is null.");
+            }
+            var compra = await _context.Compras.FindAsync(id);
+            if (compra != null)
+            {
+               /* compra.Active = false;
+                _context.Update(compra);
+                await _context.SaveChangesAsync();
+               */
+
+                var pdf = (from C in _context.Compras
+                           join ENT in _context.Entradas on C.IdEntrada equals ENT.Id
+                           join EVNT in _context.Eventos on ENT.IdEvento equals EVNT.Id
+                           join TEVNT in _context.TipoEventos on EVNT.IdTipoEvento equals TEVNT.Id
+                           join ESC in _context.Escenarios on EVNT.IdEscenario equals ESC.Id
+                           join USR in _context.Users on C.UserId equals USR.Id
+                           where C.IdEntrada == id
+
+                           select new Pdf
+                           {
+                               IdCompra = C.Id,
+                               Cantidad = C.Cantidad,
+                               fechaPago = C.FechaPago,
+                               UserId = USR.Id,
+                               Nombre = USR.UserName,
+                               Telefono = USR.PhoneNumber,
+                               IdEntrada = ENT.Id,
+                               PrecioEntrada = (int)ENT.Precio,
+                               IdEvento = EVNT.Id,
+                               DescripcionEvento = EVNT.Descripcion,
+                               tipoEvento = TEVNT.Id,
+                               DescripcionTipoEvento = TEVNT.Descripcion,
+                               idEscenario = ESC.Id,
+                               nombreEscenario = ESC.Nombre
+
+                           }).ToList();
+
+                Document doc = new Document(PageSize.A4, 20f, 20f, 30f, 30f);
+                MemoryStream ms = new MemoryStream();
+                PdfWriter.GetInstance(doc, ms);
+                doc.Open();
+
+                // Agregar contenido al documento
+                foreach (var item in pdf)
+                {
+                    doc.Add(new Paragraph("Id de Compra: " + item.IdCompra));
+                    doc.Add(new Paragraph("Cantidad: " + item.Cantidad));
+                    doc.Add(new Paragraph("Fecha de Pago: " + item.fechaPago));
+                    doc.Add(new Paragraph("Id de Usuario: " + item.UserId));
+                    doc.Add(new Paragraph("Nombre de Usuario: " + item.Nombre));
+                    doc.Add(new Paragraph("Teléfono de Usuario: " + item.Telefono));
+                    doc.Add(new Paragraph("Id de Entrada: " + item.IdEntrada));
+                    doc.Add(new Paragraph("Precio de Entrada: " + item.PrecioEntrada));
+                    doc.Add(new Paragraph("Id de Evento: " + item.IdEvento));
+                    doc.Add(new Paragraph("Descripción de Evento: " + item.DescripcionEvento));
+                    doc.Add(new Paragraph("Id de Tipo de Evento: " + item.tipoEvento));
+                    doc.Add(new Paragraph("Descripción de Tipo de Evento: " + item.DescripcionTipoEvento));
+                    doc.Add(new Paragraph("Id de Escenario: " + item.idEscenario));
+                    doc.Add(new Paragraph("Nombre de Escenario: " + item.nombreEscenario));
+                    doc.Add(new Paragraph("\n"));
+                }
+
+                // Cerrar el documento
+                doc.Close();
+
+                // Guardar el archivo PDF en disco
+                byte[] pdfBytes = ms.ToArray();
+                return File(pdfBytes, "application/pdf", "archivo.pdf");
+
+            }
+
+
+
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+    
+
+
+
+    // GET: Compras/Delete/5
+    public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Compras == null)
             {
