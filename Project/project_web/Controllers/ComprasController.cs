@@ -11,6 +11,14 @@ using project_web.Models;
 using project_web.Models.DbModels;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.Web;
 
 namespace project_web.Controllers
 {
@@ -181,10 +189,8 @@ namespace project_web.Controllers
             var compra = await _context.Compras.FindAsync(id);
             if (compra != null)
             {
-                /* compra.Active = false;
-                 _context.Update(compra);
-                 await _context.SaveChangesAsync();
-                */
+
+               
 
                 var pdf = (from C in _context.Compras
                            join ENT in _context.Entradas on C.IdEntrada equals ENT.Id
@@ -212,15 +218,17 @@ namespace project_web.Controllers
                                nombreEscenario = ESC.Nombre
 
                            }).ToList();
+        
+               
 
                 Document doc = new Document(PageSize.A4, 20f, 20f, 30f, 30f);
                 MemoryStream ms = new MemoryStream();
                 PdfWriter.GetInstance(doc, ms);
                 doc.Open();
 
-                string imagePath = "D:\\TEC-GIT\\Git\\ProjectWeb1\\IntroWebProject1\\Project\\project_web\\wwwroot\\img\\logoTec.png";
+                string imagePath = "wwwroot\\img\\logoTec.png";
                 Image logo = Image.GetInstance(imagePath);
-                logo.SetAbsolutePosition(20f, 750f);
+                logo.SetAbsolutePosition(500f, 745f);
                 logo.ScaleAbsolute(100f, 100f);
 
                 // Agregar la imagen al documento
@@ -229,47 +237,50 @@ namespace project_web.Controllers
 
                 foreach (var item in pdf)
                 {
+                    string html = "<h3>Información de la compra:</h3>"
+                + "<strong>Id de Compra:</strong> " + item.IdCompra + "<br/>"
+                + "<strong>Cantidad:</strong> " + item.Cantidad + "<br/>"
+                + "<strong>Fecha de Pago:</strong> " + item.fechaPago + "<br/><br/>"
 
+                + "<h3>Información del Usuario:</h3>"
+                + "<strong>Id de Usuario:</strong> " + item.UserId + "<br/>"
+                + "<strong>Nombre de Usuario:</strong> " + item.Nombre + "<br/>"
+                + "<strong>Teléfono de Usuario:</strong> " + item.Telefono + "<br/><br/>"
 
-                    doc.Add(new Paragraph("<h3>Información de la compra:</h3>"));
-                    doc.Add(new Paragraph("<strong>Id de Compra:</strong> " + item.IdCompra));
-                    doc.Add(new Paragraph("<strong>Cantidad:</strong> " + item.Cantidad));
-                    doc.Add(new Paragraph("<strong>Fecha de Pago:</strong> " + item.fechaPago));
+                + "<h3>Información de la Entrada:</h3>"
+                + "<strong>Id de Entrada:</strong> " + item.IdEntrada + "<br/>"
+                + "<strong>Precio de Entrada:</strong> " + item.PrecioEntrada + "<br/><br/>"
 
-                    doc.Add(new Paragraph("<h3>Información del Usuario:</h3>"));
-                    doc.Add(new Paragraph("<strong>Id de Usuario:</strong> " + item.UserId));
-                    doc.Add(new Paragraph("<strong>Nombre de Usuario:</strong> " + item.Nombre));
-                    doc.Add(new Paragraph("<strong>Teléfono de Usuario:</strong> " + item.Telefono));
+                + "<h3>Información del Evento:</h3>"
+                + "<strong>Id de Evento:</strong> " + item.IdEvento + "<br/>"
+                + "<strong>Descripción de Evento:</strong> " + item.DescripcionEvento + "<br/>"
+                + "<strong>Id de Tipo de Evento:</strong> " + item.tipoEvento + "<br/>"
+                + "<strong>Descripción de Tipo de Evento:</strong> " + item.DescripcionTipoEvento + "<br/><br/>"
 
-                    doc.Add(new Paragraph("<h3>Información de la Entrada:</h3>"));
-                    doc.Add(new Paragraph("<strong>Id de Entrada:</strong> " + item.IdEntrada));
-                    doc.Add(new Paragraph("<strong>Precio de Entrada:</strong> " + item.PrecioEntrada));
+                + "<h3>Información del Escenario:</h3>"
+                + "<strong>Id de Escenario:</strong> " + item.idEscenario + "<br/>"
+                + "<strong>Nombre de Escenario:</strong> " + item.nombreEscenario + "<br/><br/>";
 
-                    doc.Add(new Paragraph("<h3>Información del Evento:</h3>"));
-                    doc.Add(new Paragraph("<strong>Id de Evento:</strong> " + item.IdEvento));
-                    doc.Add(new Paragraph("<strong>Descripción de Evento:</strong> " + item.DescripcionEvento));
-                    doc.Add(new Paragraph("<strong>Id de Tipo de Evento:</strong> " + item.tipoEvento));
-                    doc.Add(new Paragraph("<strong>Descripción de Tipo de Evento:</strong> " + item.DescripcionTipoEvento));
+                    // Crea un nuevo elemento HTML
 
-                    doc.Add(new Paragraph("<h3>Información del Escenario:</h3>"));
-                    doc.Add(new Paragraph("<strong>Id de Escenario:</strong> " + item.idEscenario));
-                    doc.Add(new Paragraph("<strong>Nombre de Escenario:</strong> " + item.nombreEscenario));
+                var parsedHtmlElements = HTMLWorker.ParseToList(new StringReader(html), null);
 
-                    doc.Add(new Paragraph("<br/>")); // Espacio en blanco
-
+                // Agrega cada elemento HTML al documento
+                foreach (var htmlElement in parsedHtmlElements)
+                {
+                    doc.Add(htmlElement);
+                }
 
                 }
 
                 // Cerrar el documento
                 doc.Close();
-
+                compra.Active = false;
+                _context.Update(compra);
+                await _context.SaveChangesAsync();
                 // Guardar el archivo PDF en disco
                 byte[] pdfBytes = ms.ToArray();
                 return File(pdfBytes, "application/pdf", "archivo.pdf");
-
-
-
-
 
             }
 
