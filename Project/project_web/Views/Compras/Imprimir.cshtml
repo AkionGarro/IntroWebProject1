@@ -12,27 +12,28 @@
         <form asp-action="Imprimir">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
-                <label asp-for="Cantidad" class="control-label text-bold">Cantidad: </label>
+                <label asp-for="Cantidad" class="control-label" style="font-weight: bold;">Cantidad: </label>
                 <label asp-for="Cantidad" class="control-label">@Model.Cantidad</label>
             </div>
             <div class="form-group">
-                <label asp-for="FechaReserva" class="control-label"></label>
+                <label asp-for="FechaReserva" class="control-label" style="font-weight: bold;"> Fecha de reserva: </label>
                 <label asp-for="FechaReserva" class="control-label">@Model.FechaReserva</label>
 
             </div>
             <div class="form-group">
-                <label asp-for="FechaPago" class="control-label"></label>
+                <label asp-for="FechaPago" class="control-label" style="font-weight: bold;"> Fecha de pago: </label>
                 <label asp-for="FechaPago" class="control-label">@Model.FechaReserva</label>
               
             </div>
             <div class="form-group">
-                <label asp-for="IdEntrada" class="control-label"></label>
+                <label asp-for="IdEntrada" class="control-label" style="font-weight: bold;"> Código de la entrada: </label>
                 <label asp-for="IdEntrada" class="control-label">@Model.IdEntrada</label>
                
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
+                <label asp-for="UserId" class="control-label" style="font-weight: bold;">ID  del usuario: </label>
                 <label asp-for="UserId" class="control-label">@Model.UserId</label>
 
             </div>
