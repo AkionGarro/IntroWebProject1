@@ -1,10 +1,11 @@
 ﻿@model project_web.Models.TipoEscenario
 
-
-<div >
+<h2>Crear Tipos de Escenarios</h2>
+<hr />
+<div>
     <div class="row containerAr">
         <div class="col-md-4">
-            <h1>Crear Tipos de Escenarios</h1>
+
             <form asp-controller="TipoEscenarios" asp-action="Create" method="post" role="form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -18,16 +19,20 @@
                     </select>
 
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="d-flex gap-2 mt-4">
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atrás</a>
+                    </div>
                 </div>
+
             </form>
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+
 
 
 </div>
