@@ -1,16 +1,18 @@
 ﻿@model project_web.Models.Escenario
 
 
-<div class="containerAr">
+
+    <h2>Crear Escenario</h2>
+    <hr>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div class="form-group col">
+            <div class="d-flex flex-column w-25">
+                <div class="col-xs-2">
                     <label asp-for="Nombre" class="control-label"></label>
                     <input asp-for="Nombre" class="form-control" />
                     <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
-                <div class="form-group col">
+                <div class="col-xs-2">
                     <label asp-for="Localizacion" class="control-label"></label>
                     <input asp-for="Localizacion" class="form-control" />
                     <span asp-validation-for="Localizacion" class="text-danger"></span>
@@ -19,18 +21,18 @@
             
         <div class="d-flex gap-1 mt-2">
             <div class="form-group">
-                <input type="submit" value="agregar escenario" class="btn btn-info" />
+            <input type="submit" value="Agregar" class="btn btn-primary" />
 
             </div>
 
             <div>
-                <a asp-action="Index" class="btn btn-dark">Atrás</a>
+                <a asp-action="Index" class="btn btn-secondary">Atrás</a>
             </div>
         </div>
 
         </form>
 
-</div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

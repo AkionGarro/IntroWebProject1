@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 <div class="containerAr">
-<h1>Edit</h1>
 
-<h4>Escenario</h4>
+
+<h2>Editar Escenario</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,37 +24,38 @@
                 <span asp-validation-for="Localizacion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
+                <label asp-for="CreatedAt" class="control-label">Actualizado el</label>
                 <input asp-for="CreatedAt" class="form-control" />
                 <span asp-validation-for="CreatedAt" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
+                <label asp-for="CreatedBy" class="control-label">Creado por</label>
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
+                <label asp-for="UpdatedAt" class="control-label">Actualizado el</label>
                 <input asp-for="UpdatedAt" class="form-control" />
                 <span asp-validation-for="UpdatedAt" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedBy" class="control-label"></label>
+                <label asp-for="UpdatedBy" class="control-label">Actualizado por</label>
                 <input asp-for="UpdatedBy" class="form-control" />
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                    <input class="form-check-input" asp-for="Active" /> Activo
                 </label>
             </div>
                 <div class="d-flex gap-1 mt-4">
-                    <div>
-                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
-                    </div>
                     <div class="form-group">
                         <input type="submit" value="Guardar" class="btn btn-primary" />
                     </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                    </div>
+
 
                 </div>
         </form>
