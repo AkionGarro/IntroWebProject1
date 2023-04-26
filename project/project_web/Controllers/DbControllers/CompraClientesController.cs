@@ -200,18 +200,27 @@ namespace project_web.Controllers.DbControllers
         }
 
         // POST: CompraClienteController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
+            if (_context.Compras == null)
             {
-                return RedirectToAction(nameof(Index));
+                return Problem("Entity set 'ProjectTicketContext.Compras'  is null.");
             }
-            catch
+            var compra = await _context.Compras.FindAsync(id);
+            if (compra != null)
             {
-                return View();
+                _context.Compras.Remove(compra);
             }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool CompraExists(int id)
+        {
+            return (_context.Compras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
