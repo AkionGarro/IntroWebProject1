@@ -136,7 +136,8 @@ namespace project_web.Controllers.DbControllers
                     for (var i = 0; i < cantidad.Count(); i++) {
                         var entrada = await _context.Entradas.FindAsync(Int32.Parse(idEntrada[i]));
                         entrada.Disponibles = entrada.Disponibles - Int32.Parse(cantidad[i]);
-
+                        if (Int32.Parse(cantidad[i])>0)
+                        {
                             var compra = new Compra
                             {
                                 IdEntrada = Int32.Parse(idEntrada[i]),
@@ -150,17 +151,22 @@ namespace project_web.Controllers.DbControllers
                                 Active = true,
                                 UserId = UserId
                             };
+                            TempData["Success"] = "Se realizó la reserva";
                             _context.Add(compra);
                             await _context.SaveChangesAsync();
+                            
+                        }
+
                     }
-                    TempData["Success"] = "Reserva éxitosa";
+                    
+
                 }
  
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                TempData["Success"] = "No se pudo realizar la compra";
+                TempData["Error"] = "No se pudo realizar la compra";
                 return View();
             }
         }

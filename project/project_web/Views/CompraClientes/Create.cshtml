@@ -94,7 +94,7 @@
                         @Html.DisplayFor(modelItem => item.Precio)
                     </td>
                     <td>
-                        <input asp-for="@item.Cantidad" />
+                        <input asp-for="@item.Cantidad" type="number" min="0" step="1" value="0" />
                         <span asp-validation-for="@item.Cantidad" class="text-danger"></span>
                     </td>
                 </tr>
