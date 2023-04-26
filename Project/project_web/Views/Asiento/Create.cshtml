@@ -1,12 +1,13 @@
 ﻿@model project_web.Models.Asiento
 
-
+<h2>Crear Asientos </h2>
+<hr />
 <div class="containerAr">
     <div class="row">
         <div class="col-md-4">
             
             <form asp-action="Create">
-                <h1>Crear Asientos </h1>
+                
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Descripcion" class="control-label"></label>
@@ -23,15 +24,20 @@
                     <label asp-for="IdEscenario" class="control-label">Escenario</label>
                     <select asp-for="IdEscenario" class="form-control" asp-items="ViewBag.IdEscenario"></select>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="d-flex gap-1 mt-4">
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atrás</a>
+                    </div>
+
                 </div>
+  
             </form>
         </div>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+
     </div>
 </div>
 

@@ -5,12 +5,12 @@
 }
 
 <div class="containerAr">
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+
+<h2>Eliminar asiento</h2>
+<hr />
 <div>
-    <h4>Asiento</h4>
-    <hr />
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -25,37 +25,37 @@
             @Html.DisplayFor(model => model.Cantidad)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
+           Creado el
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            Creado por
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedBy)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UpdatedAt)
+            Actualizado el
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UpdatedAt)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UpdatedBy)
+            Actualizado por
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UpdatedBy)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
+            Activo
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Active)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEscenarioNavigation)
+           Id escenario
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdEscenarioNavigation.Id)
@@ -64,7 +64,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> 
             <a class="btn btn-secondary" asp-action="Index">Volver</a>
     </form>
 </div>
