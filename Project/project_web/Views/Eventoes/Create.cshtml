@@ -1,5 +1,7 @@
 ﻿@model project_web.Models.Evento
 
+<h2>Crear Evento</h2>
+<hr>
 <div class="containerAr">
     <div class="row ">
         <div class="col-md-4">
@@ -24,16 +26,19 @@
                     <label asp-for="IdEscenario" class="control-label">Tipo Escenario</label>
                     <select asp-for="IdEscenario" class="form-control" asp-items="ViewBag.IdEscenario"></select>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <a asp-action="Index" class="btn btn-secondary">Atrás</a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+   
 </div>
 
 

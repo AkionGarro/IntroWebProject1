@@ -57,6 +57,7 @@ namespace project_web.Controllers.DbControllers
                                  {
                                      Id = C.Id,
                                      Cantidad = C.Cantidad,
+                                     Asiento = E.TipoAsiento,
                                      Evento = EVE.Descripcion,
                                      FechaReserva = C.FechaReserva,
                                      IdEntrada = C.IdEntrada,

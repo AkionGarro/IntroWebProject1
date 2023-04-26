@@ -6,7 +6,8 @@
 }
 
 <h1>Carrito de compras</h1>
-
+<hr/>
+<br/>
 <div>
   <div class="containerAr">
     <div class="tablesArea">
@@ -15,6 +16,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Asiento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cantidad)
@@ -40,6 +44,9 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
+                @Html.DisplayFor(modelItem => item.Asiento)
+                </td>
+                <td>
                 @Html.DisplayFor(modelItem => item.Cantidad)
             </td>
             <td>
@@ -58,9 +65,9 @@
 }
     </tbody>
 </table>
+            <a asp-action="Index" class="btn btn-secondary">Atrás</a>
 </div>
 </div>
-    <a asp-action="Index">Back to List</a>
 </div>
 @section Scripts{
 

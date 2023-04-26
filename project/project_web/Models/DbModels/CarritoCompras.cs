@@ -8,6 +8,9 @@ namespace project_web.Models.DbModels
         [Display(Name = "Id Compra")]
         public int Id { get; set; }
 
+        [Display(Name = "Tipo de Asiento")]
+        public string? Asiento { get; set; }
+
         [Display(Name = "Cantidad")]
         public int Cantidad { get; set; }
 

@@ -4,8 +4,8 @@
     ViewData["Title"] = "Imprimir";
 }
 
-<h1>Imprimir</h1>
-
+<h2>Detalles de la factura</h2>
+<hr/>
 
 <div class="row">
     <div class="col-md-4">
@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Cantidad" class="control-label"></label>
+                <label asp-for="Cantidad" class="control-label text-bold">Cantidad: </label>
                 <label asp-for="Cantidad" class="control-label">@Model.Cantidad</label>
             </div>
             <div class="form-group">
@@ -36,16 +36,21 @@
                 <label asp-for="UserId" class="control-label">@Model.UserId</label>
 
             </div>
-            <div class="form-group">
-                <input type="submit" value="Imprimir PDF" class="btn btn-primary" />
+            <div class="d-flex gap-1 mt-4">
+                <div class="form-group">
+                    <input type="submit" value="Imprimir PDF" class="btn btn-primary" />
+                </div>
+                <div>
+                    <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                </div>
+
+
             </div>
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

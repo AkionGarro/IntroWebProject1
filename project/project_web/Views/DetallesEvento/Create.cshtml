@@ -90,16 +90,16 @@
     </tbody>
 </table>
 <hr />
-
-<div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-</div>
-
+    <div class="d-flex gap-1 mt-2">
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary">Atrás</a>
+        </div>
+    </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}}
