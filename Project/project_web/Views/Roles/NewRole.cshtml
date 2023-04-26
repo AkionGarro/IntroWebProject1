@@ -4,9 +4,8 @@
     ViewData["Title"] = "NewRole";
 }
 
-<h1>NewRole</h1>
 
-<h4>Roles</h4>
+<h2>Crear nuevo rol</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,13 +16,13 @@
                 <input asp-for="RoleName" class="form-control" />
                 <span asp-validation-for="RoleName" class="text-danger"></span>
             </div>
-            <div class="d-flex mt-4">
+            <div class="d-flex gap-2 mt-2">
 
                 <div class="form-group">
-                    <input type="submit" value="Crear" class="btn btn-register" />
+                    <input type="submit" value="Crear" class="btn btn-primary" />
                 </div>
                 <div>
-                    <a class="btn btn-login" asp-action="Index">Regresar</a>
+                    <a class="btn btn-secondary" asp-action="Index">Atrás</a>
                 </div>
             </div>
 

@@ -33,7 +33,7 @@
                         @Html.DisplayNameFor(model => model.Id)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        Nombre Rol
                     </th>
       
 
@@ -65,7 +65,7 @@
                                     </svg>
 
 
-                                    <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Edit" asp-route-id="@item.Id">Manage</a>
+                                    <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Edit" asp-route-id="@item.Id">Agregar usuarios</a>
                                 </div>
 
 
@@ -79,7 +79,7 @@
                                         <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                     </svg>
-                                        <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        <a class="text-decoration-none text-black" asp-controller="Roles" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
                                 </div>
                             </div>
 
