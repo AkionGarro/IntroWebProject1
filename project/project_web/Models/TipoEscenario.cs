@@ -12,12 +12,15 @@ public partial class TipoEscenario
 
     public string Descripcion { get; set; } = null!;
 
+    [Display(Name = "Creado el")]
     public DateTime CreatedAt { get; set; }
 
+    [Display(Name = "Creado por")]
     public string? CreatedBy { get; set; }
-
+    [Display(Name = "Actualizado el")]
     public DateTime UpdatedAt { get; set; }
 
+    [Display(Name = "Actualizado por")]
     public string? UpdatedBy { get; set; }
 
     public bool Active { get; set; }

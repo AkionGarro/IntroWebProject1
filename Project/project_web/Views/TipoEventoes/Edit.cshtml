@@ -5,9 +5,8 @@
 }
 
 <div class="containerAr">
-<h1>Edit</h1>
 
-<h4>TipoEvento</h4>
+<h2>Editar tipo evento</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,18 +38,19 @@
                 <input asp-for="UpdatedBy" class="form-control" />
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Active" /> Activo
+                    </label>
+                </div>
                 <div class="d-flex gap-1 mt-4">
-                    <div>
-                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
-                    </div>
                     <div class="form-group">
                         <input type="submit" value="Guardar" class="btn btn-primary" />
                     </div>
+                    <div>
+                        <a class="btn btn-secondary" asp-action="Index">Atras</a>
+                    </div>
+
 
                 </div>
         </form>
