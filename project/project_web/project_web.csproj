@@ -28,6 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpecialTicket.BLL\SpecialTicket.BLL.csproj" />
+    <ProjectReference Include="..\SpecialTicket.Models\SpecialTicket.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Models\Roles\EditRoles.cs">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Compile>
