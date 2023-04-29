@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using SpecialTicket.Models.Models;
 using SpecialTicket.Models.Models.DbModels;
 using SpecialTicket.Models.Models.Roles;
-namespace SpecialTicket.DAL;
+namespace SpecialTicket.DAL.DataContext;
 
 public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
 {
@@ -116,7 +116,7 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
             entity.Property(e => e.UpdatedBy)
                .HasColumnType("varchar(100)")
                .HasColumnName("UpdatedBy");
-        
+
 
             entity.HasOne(d => d.IdEntradaNavigation).WithMany(p => p.Compras)
                 .HasForeignKey(d => d.IdEntrada)
@@ -317,9 +317,9 @@ public partial class ProjectTicketContext : IdentityDbContext<IdentityUser>
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-    public DbSet<SpecialTicket.Models.Models.DbModels.DetallesEvento>? DetallesEvento { get; set; }
-    public DbSet<SpecialTicket.Models.Models.DbModels.CompraCliente>? CompraClientes { get; set; }
+    public DbSet<DetallesEvento>? DetallesEvento { get; set; }
+    public DbSet<CompraCliente>? CompraClientes { get; set; }
     public DbSet<RolesModel>? Roles { get; set; }
 
-    public DbSet<SpecialTicket.Models.Models.DbModels.CompraCliente>? CompraCliente { get; set; }
+    public DbSet<CompraCliente>? CompraCliente { get; set; }
 }
