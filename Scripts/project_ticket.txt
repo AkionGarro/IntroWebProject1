@@ -5,15 +5,18 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+CREATE DATABASE IF NOT EXISTS `project_ticket` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `project_ticket`;
+
 
 CREATE TABLE asiento (
   id int(11) NOT NULL,
   descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   cantidad int(11) NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active tinyint(1) NOT NULL,
   id_escenario int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='tipos de asiento del escenario';
@@ -25,9 +28,9 @@ CREATE TABLE compra (
   fecha_reserva datetime NOT NULL,
   fecha_pago datetime NOT NULL,
   Created_At datetime NOT NULL,
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  UpdatedBy int(11) NOT NULL,
+  UpdatedBy varchar(100) NOT NULL,
   Active int(11) NOT NULL,
   id_entrada int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,9 +43,9 @@ CREATE TABLE entradas (
   disponibles int(11) NOT NULL,
   precio decimal(10,0) NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active tinyint(1) NOT NULL,
   id_evento int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -54,9 +57,9 @@ CREATE TABLE escenario (
   nombre varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   localizacion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,9 +69,9 @@ CREATE TABLE evento (
   descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   fecha datetime NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active tinyint(1) NOT NULL,
   id_tipo_evento int(11) NOT NULL,
   id_escenario int(11) NOT NULL
@@ -78,9 +81,9 @@ CREATE TABLE tipo_escenario (
   id int(11) NOT NULL,
   descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active tinyint(1) NOT NULL,
   id_escenario int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -90,9 +93,9 @@ CREATE TABLE tipo_evento (
   id int(11) NOT NULL,
   descripcion varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   Created_At datetime NOT NULL DEFAULT current_timestamp(),
-  Created_By int(11) NOT NULL,
+  Created_By varchar(100) NOT NULL,
   Updated_At datetime NOT NULL,
-  Updated_By int(11) NOT NULL,
+  Updated_By varchar(100) NOT NULL,
   Active int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
